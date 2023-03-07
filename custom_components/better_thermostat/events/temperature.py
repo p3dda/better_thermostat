@@ -60,3 +60,10 @@ async def trigger_temperature_change(self, event):
         self.last_external_sensor_change = datetime.now()
         self.async_write_ha_state()
         await self.control_queue_task.put(self)
+    else:
+        _LOGGER.debug(
+            "better_thermostat %s: external_temperature changed from %s to %s, but ignored due to time difference",
+            self.name,
+            self.cur_temp,
+            _incoming_temperature,
+        )

@@ -99,6 +99,10 @@ async def trigger_trv_change(self, event):
                 self.real_trvs[entity_id][
                     "last_calibration"
                 ] = await get_current_offset(self, entity_id)
+    else:
+        _LOGGER.debug(
+            f"better_thermostat {self.name}: TRV {entity_id} sends new internal temperature from {_new_current_temp} to {_new_current_temp} - skipping"
+        )
 
     if self.ignore_states:
         return
